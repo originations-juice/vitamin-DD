@@ -132,14 +132,23 @@ For each classified file:
 
 ### Step 5 — Preserve original-path metadata
 
-For every moved file, append to a run-local `_moves.log` (kept in memory,
-written to `INDEX.md` by the next-but-one subskill):
+For every moved file, append to `_moves.log` at the data-room source root:
 
 ```
 <original relative path>  →  <new relative path>  (bucket, confidence, reason)
 ```
 
-The user must be able to reconstruct any move. Never silently drop history.
+**Flush cadence:** open `_moves.log` for append at the start of step 3 and
+flush after **every** successful move (or every 5 moves on connectors
+where per-write commit is expensive). Do not buffer the entire log in
+memory — if the run dies mid-batch (network drop, quota exceeded,
+process killed), the on-disk log must reflect every move that already
+landed. The user reconstructs the rollback from `_moves.log`; a missing
+log entry is data loss.
+
+`_moves.log` is also surfaced in `INDEX.md` by `generate-manifest`
+(under "Move history"), but the on-disk log is the source of truth.
+Never silently drop history.
 
 ## Output
 

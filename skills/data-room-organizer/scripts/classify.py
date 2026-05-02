@@ -11,6 +11,13 @@ This is a heuristic v0.1 fallback. The real classifier lives inside the
 Claude skill and uses content samples + LLM reasoning. Use this script when
 you can't run the skill and need a "good enough" first pass.
 
+Confidence scale: this CLI returns coarse strings ("high" / "medium" /
+"low"). The full skill (classify-document/SKILL.md, peek-strategies.md)
+uses 0-100 percentages with a 70% gate to 00_NEEDS_REVIEW. The CLI's
+NEEDS_REVIEW return corresponds to "below 70%" in the full skill — files
+the CLI flags here are exactly the files the full skill would route to
+00_NEEDS_REVIEW for content-peek triage.
+
 Usage:
     python classify.py /path/to/data/room
     python classify.py /path/to/data/room --json
@@ -49,7 +56,7 @@ BUCKETS = [
 
 REVIEW = "_review"
 UNREADABLE = "_unreadable"
-AMBIGUOUS = "AMBIGUOUS"
+NEEDS_REVIEW = "NEEDS_REVIEW"
 
 # ---------------------------------------------------------------------------
 # Alias table — substring match on normalized filename + path
@@ -289,9 +296,6 @@ REVIEW_HINTS = (
 
 UNREADABLE_EXTS = {".zip", ".rar", ".7z"}
 
-# Regex: word-boundary token detector for normalized strings
-_WB_RE = re.compile(r"(?:^|[^a-z0-9])({})(?:$|[^a-z0-9])")
-
 
 def _normalize(s: str) -> str:
     """Lowercase, replace path separators / hyphens / underscores with spaces."""
@@ -323,11 +327,6 @@ def _disambig_borrowing_base(path_norm: str) -> str:
     if "certificate" in path_norm:
         return "05_Existing_Debt"
     return "04_Collateral"
-
-
-def _disambig_term_sheet(path_norm: str) -> str:
-    """Term sheet for existing facility (default) vs new deal — fall back to 05."""
-    return "05_Existing_Debt"
 
 
 # ---------------------------------------------------------------------------
@@ -385,18 +384,15 @@ def classify(relative_path: str) -> Classification:
         if alias in path_norm:
             hits.append((alias, bucket))
 
-    # Word-boundary aliases (short tokens)
+    # Word-boundary aliases (short tokens — too short for safe substring match)
     for alias, bucket in WB_ALIASES:
-        if _WB_RE.search(f" {path_norm} ".replace(" ", "  ")):
-            # Above is a defensive pad; real check below
-            pass
         if re.search(rf"(?:^|[^a-z0-9]){re.escape(alias)}(?:$|[^a-z0-9])", path_norm):
             hits.append((alias, bucket))
 
     if not hits:
         return Classification(
             relative_path=relative_path,
-            bucket=AMBIGUOUS,
+            bucket=NEEDS_REVIEW,
             confidence="low",
             reason="no alias hit; needs LLM classifier (run inside Claude)",
         )
@@ -443,7 +439,7 @@ def walk_and_classify(root: Path) -> list[Classification]:
 def move_files(root: Path, classifications: list[Classification]) -> None:
     """Actually create bucket folders and move files."""
     for c in classifications:
-        if c.bucket == AMBIGUOUS:
+        if c.bucket == NEEDS_REVIEW:
             print(f"  SKIP (ambiguous): {c.relative_path}", file=sys.stderr)
             continue
         src = root / c.relative_path
@@ -538,7 +534,7 @@ def main(argv: list[str]) -> int:
 
     if args.move:
         move_files(root, results)
-        print(f"\nMoved {sum(1 for c in results if c.bucket != AMBIGUOUS)} files.")
+        print(f"\nMoved {sum(1 for c in results if c.bucket != NEEDS_REVIEW)} files.")
 
     return 0
 

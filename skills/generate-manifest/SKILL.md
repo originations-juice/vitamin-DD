@@ -100,6 +100,21 @@ passes. Each has a sibling `.txt` explaining why.
 
 ---
 
+## Move history
+
+Every file move that the organizer applied. Use this to reconstruct the
+original layout if needed. The full append-only log lives at
+`_moves.log` at the data-room root.
+
+| Original path | Current path | Bucket | Confidence | Reason |
+|---|---|---|---|---|
+| `<orig>` | `<new>` | `<bucket>` | `<pct>%` | `<one line>` |
+
+(For data rooms with > 200 moves, truncate the table to the first 100
+rows and link to `_moves.log` for the full history.)
+
+---
+
 ## Methodology
 
 This data room is organized using the 5-question lender model:

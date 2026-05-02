@@ -4,7 +4,6 @@
   "description": "Organizes a private-credit data room into the 9-bucket structure institutional lenders expect. Two-pass classifier (filename peek + content peek) with a 00_NEEDS_REVIEW destination for low-confidence files. Produces INDEX.md, GAPS.md, and a Lender-Ready Score.",
   "author": {
     "name": "Originations Juice",
-    "email": "scott@meet-oj.com",
     "url": "https://meet-oj.com"
   },
   "license": "MIT",

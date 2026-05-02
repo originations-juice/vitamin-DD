@@ -106,10 +106,9 @@ Cut back to Scott on cam.
 
 > "We're building OJ — the AI-native loan origination platform. The
 > skill is free and stays free. If you want this running automatically
-> every time a borrower uploads, that's Juicebox. Link in bio."
+> every time a borrower uploads, that's Juicebox. meet-oj.com/dataroom."
 
-**On screen:** `meet-oj.com/dataroom` + Scott's LinkedIn handle for
-"DM me if you want a demo".
+**On screen:** `meet-oj.com/dataroom`.
 
 ---
 

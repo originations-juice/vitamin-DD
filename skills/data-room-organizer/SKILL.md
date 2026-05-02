@@ -124,6 +124,17 @@ Do not surface low-confidence files to the user via AskUserQuestion
 during the run — the `00_NEEDS_REVIEW/` folder is the surfacing
 mechanism. The user triages it after the run.
 
+**Batching for large data rooms.** When the inventory exceeds **500
+files**, process classification in batches of **100** to keep each
+sub-call's token budget bounded. Between batches: flush `_moves.log`
+(see `route-to-bucket/SKILL.md` for cadence), checkpoint progress to
+the user (one-line "batch N of M complete; X classified, Y need
+review"), and confirm the user wants to continue if total estimated
+peek tokens exceed 1M (see token-budget guidance in
+`references/peek-strategies.md`). On retry after a failure, resume
+from the last completed batch — re-classifying already-routed files
+is wasteful and risks idempotency issues with cloud-connector moves.
+
 ### Step 5 — Route to buckets
 
 Load and execute the **`route-to-bucket`** subskill. It creates the 9-folder
