@@ -1,0 +1,78 @@
+{
+  "name": "data-room-organizer",
+  "version": "0.1.0",
+  "description": "Organizes a private-credit data room into the 9-bucket structure institutional lenders expect. Two-pass classifier (filename peek + content peek) with a 00_NEEDS_REVIEW destination for low-confidence files. Produces INDEX.md, GAPS.md, and a Lender-Ready Score.",
+  "author": {
+    "name": "Originations Juice",
+    "url": "https://meet-oj.com"
+  },
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/originations-juice/vitamin-DD"
+  },
+  "homepage": "https://meet-oj.com/dataroom",
+  "keywords": [
+    "private-credit",
+    "data-room",
+    "due-diligence",
+    "underwriting",
+    "vdr",
+    "lender",
+    "fintech",
+    "specialty-finance"
+  ],
+  "skills": [
+    {
+      "name": "data-room-organizer",
+      "path": "skills/data-room-organizer/SKILL.md",
+      "description": "Master orchestrator. Asks for context, resolves the source, classifies and routes every file, generates INDEX.md / GAPS.md / SCORE.md."
+    },
+    {
+      "name": "setup-source-access",
+      "path": "skills/setup-source-access/SKILL.md",
+      "description": "Preflight. Detects surface, enumerates MCPs, resolves source location across 4 tiers."
+    },
+    {
+      "name": "ingest-data-room",
+      "path": "skills/ingest-data-room/SKILL.md",
+      "description": "Read-only inventory builder."
+    },
+    {
+      "name": "classify-document",
+      "path": "skills/classify-document/SKILL.md",
+      "description": "Two-pass classifier (filename peek + content peek)."
+    },
+    {
+      "name": "route-to-bucket",
+      "path": "skills/route-to-bucket/SKILL.md",
+      "description": "Creates the 9 buckets + 00_NEEDS_REVIEW; moves files."
+    },
+    {
+      "name": "rename-canonical",
+      "path": "skills/rename-canonical/SKILL.md",
+      "description": "Renames to YYYY-MM-DD_company_doctype.ext."
+    },
+    {
+      "name": "generate-manifest",
+      "path": "skills/generate-manifest/SKILL.md",
+      "description": "Writes INDEX.md."
+    },
+    {
+      "name": "missing-items-report",
+      "path": "skills/missing-items-report/SKILL.md",
+      "description": "80-item checklist + consistency checks; writes GAPS.md."
+    },
+    {
+      "name": "prep-for-lender",
+      "path": "skills/prep-for-lender/SKILL.md",
+      "description": "Computes Lender-Ready Score; writes SCORE.md."
+    }
+  ],
+  "mcp_requirements": [],
+  "compatible_surfaces": [
+    "claude-code",
+    "claude-cowork",
+    "claude-desktop"
+  ]
+}
