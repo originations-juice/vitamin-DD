@@ -21,24 +21,22 @@ Then in any folder with a messy data room:
 
 ## Claude Cowork (desktop app)
 
-**Option A — install via marketplace:**
+Install via the marketplace:
 
-In Cowork settings, add the marketplace
-`originations-juice/vitamin-DD`, then install the
-`data-room-organizer` plugin.
+1. Open Cowork settings.
+2. Add the marketplace `originations-juice/vitamin-DD`.
+3. Install the `data-room-organizer` plugin.
 
-**Option B — drop-in install:**
-
-```bash
-cd ~/Library/Application\ Support/Claude/local-agent-mode-sessions/<session>/skills/
-git clone https://github.com/originations-juice/vitamin-DD.git
-```
-
-Restart Cowork. Then in a session pointed at the data room directory:
+Then in a session pointed at the data room directory:
 
 ```
 > organize this data room
 ```
+
+Cowork manages where skills live on disk (temp plugin caches, RPM
+marketplace cache, knowledge-work plugin cache). There is no
+user-writable drop-in path that Cowork scans, so a manual `git clone`
+into a session folder will not load — install through the marketplace.
 
 ---
 
@@ -78,9 +76,10 @@ After installing, run:
 
 You should see `data-room-organizer` listed. If it doesn't appear, check:
 
-1. The plugin marketplace entry resolved (Claude Code: `/plugin list`).
-2. The skill files actually landed where the surface expects them
-   (Cowork: check the skills folder; Desktop: re-upload).
+1. The plugin marketplace entry resolved (Claude Code: `/plugin list`;
+   Cowork: settings → Marketplaces → confirm `originations-juice/vitamin-DD`
+   is listed and the plugin shows as installed).
+2. For Desktop: re-upload the skill file via the desktop app's skill UI.
 
 ---
 
