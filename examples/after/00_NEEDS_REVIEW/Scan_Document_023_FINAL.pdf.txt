@@ -1,0 +1,6 @@
+File: misc/Scan_Document_023_FINAL.pdf
+Reason: low-confidence
+Pass 1 confidence: 0
+Pass 2 confidence: 55
+Signals used: filename:"Scan_Document_023_FINAL"; content:"Final executed copy. Signed by all parties. See exhibits A-D attached."
+Suggested next step: Open the file and confirm whether it's an executed contract (likely 01_Corporate_Legal or 05_Existing_Debt). If it's the warehouse credit agreement, route to 05; if it's a corporate consent or material contract, route to 01. Re-run the skill after renaming.
