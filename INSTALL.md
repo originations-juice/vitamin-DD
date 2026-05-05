@@ -1,20 +1,52 @@
 # Install — `data-room-organizer`
 
-Three install paths, one skill. Pick whichever matches how you run Claude.
+Pick the path that matches how you run Claude. The Vercel `npx skills`
+form below is the recommended front-door — it works across every Claude
+surface (Code, Cowork, Desktop) plus Cursor, Cline, Zed, and the other
+agent runtimes the Vercel CLI supports.
 
 ---
 
-## Claude Code (CLI)
+## Recommended: `npx skills`
 
 ```bash
-/plugin marketplace add originations-juice/vitamin-DD
-/plugin install data-room-organizer
+npx skills add github.com/originations-juice/vitamin-DD
+```
+
+The CLI lists the available skills in this repo and prompts you to pick
+which to install and which agent(s) to install them into. Pick at least
+`data-room-organizer` (the master orchestrator). The eight subskills
+(setup-source-access, ingest-data-room, classify-document,
+route-to-bucket, rename-canonical, generate-manifest,
+missing-items-report, prep-for-lender) are loaded by the master at
+runtime — install them all if you want every step to resolve cleanly.
+
+Non-interactive variants:
+
+```bash
+# Install everything (master + 8 subskills) into the current project:
+npx skills add github.com/originations-juice/vitamin-DD --skill '*' -y
+
+# Install globally (~/.claude/skills) instead of project-local:
+npx skills add github.com/originations-juice/vitamin-DD --skill '*' -g -y
+
+# Install everything into every detected agent runtime:
+npx skills add github.com/originations-juice/vitamin-DD --all
 ```
 
 Then in any folder with a messy data room:
 
 ```
 > organize this data room
+```
+
+---
+
+## Claude Code (CLI) — plugin marketplace
+
+```bash
+/plugin marketplace add originations-juice/vitamin-DD
+/plugin install data-room-organizer
 ```
 
 ---
@@ -52,20 +84,6 @@ or Cowork for local data rooms.
 
 ---
 
-## Vercel `npx add-skill`
-
-```bash
-npx add-skill https://github.com/originations-juice/vitamin-DD
-```
-
-or:
-
-```bash
-npx skills add https://github.com/originations-juice/vitamin-DD --skill data-room-organizer
-```
-
----
-
 ## Verify the install
 
 After installing, run:
@@ -76,10 +94,14 @@ After installing, run:
 
 You should see `data-room-organizer` listed. If it doesn't appear, check:
 
-1. The plugin marketplace entry resolved (Claude Code: `/plugin list`;
-   Cowork: settings → Marketplaces → confirm `originations-juice/vitamin-DD`
-   is listed and the plugin shows as installed).
-2. For Desktop: re-upload the skill file via the desktop app's skill UI.
+1. For npx installs: `npx skills list` (project) or
+   `npx skills list -g` (global) lists everything the CLI placed.
+2. For Claude Code marketplace installs: `/plugin list` confirms the
+   plugin is enabled.
+3. For Cowork: settings → Marketplaces → confirm
+   `originations-juice/vitamin-DD` is listed and the plugin shows as
+   installed.
+4. For Desktop: re-upload the skill file via the desktop app's skill UI.
 
 ---
 

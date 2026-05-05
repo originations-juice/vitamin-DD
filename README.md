@@ -1,12 +1,18 @@
 # vitamin-DD
 
-> Skill bundle for private credit due diligence. The first skill —
-> `data-room-organizer` — turns any messy data room into the 9-bucket
-> structure institutional lenders actually want.
+> Skill bundle for private credit due diligence. Turns any messy data
+> room into the 9-bucket structure institutional lenders actually want.
+
+```bash
+npx skills add github.com/originations-juice/vitamin-DD
+```
+
+<!-- DEMO_GIF.gif goes here -->
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
-[![Skills: 1](https://img.shields.io/badge/skills-1-blue)](skills/)
 [![Status: v0.1](https://img.shields.io/badge/status-v0.1-green)](.)
+
+Other install paths (Claude Code, Cowork, Desktop): [`INSTALL.md`](INSTALL.md).
 
 ---
 
@@ -56,19 +62,6 @@ Two-pass peek strategy: [`skills/data-room-organizer/references/peek-strategies.
 
 ---
 
-## Install
-
-One-liner for Claude Code:
-
-```bash
-/plugin marketplace add originations-juice/vitamin-DD
-/plugin install data-room-organizer
-```
-
-Full instructions for Cowork, Desktop, and Vercel: [`INSTALL.md`](INSTALL.md).
-
----
-
 ## See it in action
 
 The repo ships with a synthetic ~30-file messy data room and the same
@@ -92,7 +85,6 @@ vitamin-DD/
 ├── README.md
 ├── LICENSE
 ├── INSTALL.md
-├── SKILL.md                          # Bundle entry point
 ├── .claude-plugin/
 │   └── plugin.json                   # Plugin marketplace metadata
 ├── skills/
