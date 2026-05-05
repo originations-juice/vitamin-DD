@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Step 3 — Offer</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="assets/colors_and_type.css" />
+<style>
+  html, body { margin: 0; background: transparent; height: 100%; overflow: hidden; }
+  #root { position: absolute; inset: 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="src/animations.jsx"></script>
+<script type="text/babel" src="src/shared.jsx"></script>
+<script type="text/babel" src="src/components.jsx"></script>
+<script type="text/babel" src="src/auth.jsx"></script>
+<script type="text/babel" src="src/scenes.jsx"></script>
+
+<script type="text/babel">
+  const { Stage, Sprite, GlobalStyles } = window;
+  const { Step3, DUR_STEP3, STAGE_W, STAGE_H } = window;
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <Stage width={STAGE_W} height={STAGE_H} duration={DUR_STEP3}
+           background="#FAF8F5" controls={false} persistKey="oj-step-3">
+      <GlobalStyles />
+      <Sprite start={0} end={DUR_STEP3}><Step3 /></Sprite>
+    </Stage>
+  );
+</script>
+</body>
+</html>

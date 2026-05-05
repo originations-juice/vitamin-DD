@@ -1,0 +1,296 @@
+/* ============================================================
+   O.J. (Originations Juice) — Colors & Type
+   Brand: juice-box logo + "funky-but-professional" loan-ops tool
+   Palette source: uploads/oj-palette.pdf
+   Codebase source: OJFundraising/client/src/index.css + tailwind.config.ts
+   ============================================================ */
+
+/* ----- Webfonts ------------------------------------------------- */
+/* Primary UI font = Inter (per tailwind.config.ts).
+   Display accent  = Fraktion / Geist? The codebase uses Inter at all weights,
+   with `italic` as the expressive accent (e.g. "for you" on landing).
+   We substitute Google Fonts Inter + Instrument Serif for the italic accent. */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500&display=swap');
+
+:root {
+  /* ========== COLOR TOKENS (hex, from palette PDF) ========== */
+
+  /* -- Ice / Cyan (secondary accent, "fresh")  ------------- */
+  --oj-ice-50:  #c4ecf5;
+  --oj-ice-100: #7FC8D6;  /* brand accent */
+  --oj-ice-300: #64a0ab;
+  --oj-ice-500: #4b7982;
+  --oj-ice-700: #33545b;
+  --oj-ice-800: #1c3236;
+  --oj-ice-900: #081315;
+
+  /* -- Lime / Green ("go", approvals, funded) -------------- */
+  --oj-lime-50:  #d0feb2;
+  --oj-lime-100: #91e434;
+  --oj-lime-300: #75B928;  /* brand green */
+  --oj-lime-500: #5a901d;
+  --oj-lime-700: #406912;
+  --oj-lime-800: #284408;
+  --oj-lime-900: #122302;
+
+  /* -- Indigo / Ink ("serious", nav, dark bg) -------------- */
+  --oj-ink-50:  #eff0f8;
+  --oj-ink-100: #c3c9e4;
+  --oj-ink-300: #96a1d1;
+  --oj-ink-500: #697bbc;
+  --oj-ink-700: #48588d;
+  --oj-ink-800: #2d375c;
+  --oj-ink-900: #141A2F;  /* brand ink */
+
+  /* -- Amber / Honey (warm, caution, highlights) ----------- */
+  --oj-honey-50:  #fde5d3;
+  --oj-honey-100: #FAB35E;  /* brand honey */
+  --oj-honey-300: #cf8d31;
+  --oj-honey-500: #9e6b23;
+  --oj-honey-700: #714b16;
+  --oj-honey-800: #462d0a;
+  --oj-honey-900: #201202;
+
+  /* -- Juice / Orange (PRIMARY — CTAs, brand) -------------- */
+  --oj-juice-50:  #ffd9d2;
+  --oj-juice-100: #fea28c;
+  --oj-juice-300: #F9640B;  /* primary brand orange */
+  --oj-juice-500: #be4a06;
+  --oj-juice-700: #853203;
+  --oj-juice-800: #511b01;
+  --oj-juice-900: #240800;
+
+  /* -- Sand (warm neutrals — surfaces, text, dividers) ----- */
+  --oj-sand-50:  #F8F7F4;  /* paper background */
+  --oj-sand-100: #d3cfc1;
+  --oj-sand-300: #aba79d;
+  --oj-sand-500: #858279;
+  --oj-sand-700: #615e58;
+  --oj-sand-800: #3f3d39;
+  --oj-sand-900: #1f1f1c;
+
+  /* -- Steel (cool neutrals — UI chrome) ------------------- */
+  --oj-steel-50:  #e2e6e6;
+  --oj-steel-100: #b9bebf;
+  --oj-steel-300: #939798;
+  --oj-steel-500: #6f7373;
+  --oj-steel-700: #4e5050;
+  --oj-steel-800: #2e2f30;
+  --oj-steel-900: #111112;
+
+  /* ========== SEMANTIC TOKENS (light mode) ========== */
+
+  /* Surfaces */
+  --bg:           #FAF8F5;       /* matches existing --background */
+  --bg-paper:    var(--oj-sand-50);
+  --surface:      #FFFFFF;
+  --surface-sub:  #F8F7F4;
+  --surface-ink:  var(--oj-ink-900); /* dark-section bg (data room, hero alt) */
+  --overlay:      rgba(20, 26, 47, 0.06);
+
+  /* Text */
+  --fg1:          #3D4852;        /* primary body (from codebase) */
+  --fg2:          #6b7480;        /* muted */
+  --fg3:          #9aa0a8;        /* placeholders, de-emphasized */
+  --fg-inverse:   #FAF8F5;        /* on dark */
+
+  /* Primary brand */
+  --brand:        var(--oj-juice-300);  /* #F9640B */
+  --brand-hover:  var(--oj-juice-500);
+  --brand-soft:   var(--oj-juice-50);
+  --brand-ink:    var(--oj-juice-700);
+  --on-brand:     #FFFFFF;
+
+  /* Secondary / accents */
+  --accent-ice:   var(--oj-ice-100);
+  --accent-lime:  var(--oj-lime-300);
+  --accent-honey: var(--oj-honey-100);
+  --accent-ink:   var(--oj-ink-900);
+
+  /* Semantic statuses */
+  --success:      var(--oj-lime-300);
+  --success-soft: var(--oj-lime-50);
+  --warning:      var(--oj-honey-100);
+  --warning-soft: var(--oj-honey-50);
+  --danger:       #DC2626;
+  --danger-soft:  #FEE2E2;
+  --info:         var(--oj-ice-500);
+  --info-soft:    var(--oj-ice-50);
+
+  /* Lines */
+  --border:        #EAE6DE;       /* warm sand hairline */
+  --border-strong: var(--oj-sand-100);
+  --border-ink:    var(--oj-ink-800);
+  --ring:          var(--oj-juice-300);
+
+  /* ========== SHAPE / ELEVATION ========== */
+  --radius-xs: 4px;
+  --radius-sm: 8px;
+  --radius-md: 12px;   /* default card */
+  --radius-lg: 16px;
+  --radius-xl: 24px;
+  --radius-2xl: 32px;
+  --radius-pill: 9999px;
+
+  --shadow-xs: 0 1px 2px rgba(20, 26, 47, 0.04);
+  --shadow-sm: 0 1px 3px rgba(20, 26, 47, 0.06), 0 1px 2px rgba(20, 26, 47, 0.04);
+  --shadow-md: 0 4px 12px rgba(20, 26, 47, 0.08), 0 2px 4px rgba(20, 26, 47, 0.04);
+  --shadow-lg: 0 12px 32px rgba(20, 26, 47, 0.10), 0 4px 8px rgba(20, 26, 47, 0.04);
+  --shadow-juice: 0 8px 24px rgba(249, 100, 11, 0.18);  /* CTA glow */
+  --shadow-ring:  0 0 0 3px rgba(249, 100, 11, 0.15);   /* focus */
+
+  /* ========== SPACING (8pt base) ========== */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 20px;
+  --space-6: 24px;
+  --space-8: 32px;
+  --space-10: 40px;
+  --space-12: 48px;
+  --space-16: 64px;
+  --space-20: 80px;
+  --space-24: 96px;
+
+  /* ========== TYPE FOUNDATIONS ========== */
+  --font-sans:    'Inter', system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-serif:   'Instrument Serif', Georgia, serif;        /* italic accent */
+  --font-mono:    'JetBrains Mono', ui-monospace, monospace;
+
+  /* Sizes (rem-based, 16px root) */
+  --text-xs:   12px;
+  --text-sm:   14px;
+  --text-base: 16px;
+  --text-lg:   18px;
+  --text-xl:   20px;
+  --text-2xl:  24px;
+  --text-3xl:  30px;
+  --text-4xl:  36px;
+  --text-5xl:  48px;
+  --text-6xl:  60px;
+  --text-7xl:  72px;
+
+  /* Semantic type blocks (see utility classes below) */
+  --h1-size: 72px; --h1-lh: 1.05; --h1-tracking: -0.035em; --h1-weight: 600;
+  --h2-size: 48px; --h2-lh: 1.10; --h2-tracking: -0.028em; --h2-weight: 600;
+  --h3-size: 30px; --h3-lh: 1.15; --h3-tracking: -0.020em; --h3-weight: 600;
+  --h4-size: 20px; --h4-lh: 1.25; --h4-tracking: -0.010em; --h4-weight: 600;
+  --p-size:  16px; --p-lh:  1.65; --p-tracking: 0;          --p-weight:  400;
+  --small-size: 14px; --small-lh: 1.55;
+  --eyebrow-size: 10px; --eyebrow-tracking: 0.20em;
+  --code-size: 13px;
+
+  /* Motion */
+  --ease:        cubic-bezier(0.16, 1, 0.3, 1);
+  --dur-fast:    150ms;
+  --dur:         220ms;
+  --dur-slow:    400ms;
+  --dur-float:   6s;
+}
+
+/* ========== DARK MODE (deep ink) ========== */
+.dark, [data-theme="dark"] {
+  --bg:          #15191e;
+  --bg-paper:    #0f1218;
+  --surface:     #1a1f28;
+  --surface-sub: #22283300;
+  --overlay:     rgba(255, 255, 255, 0.04);
+
+  --fg1:         #F6F3ED;
+  --fg2:         #9aa3af;
+  --fg3:         #6b727c;
+  --fg-inverse:  #141A2F;
+
+  --border:        #262d38;
+  --border-strong: #333a47;
+
+  --brand-soft:  rgba(249, 100, 11, 0.12);
+}
+
+/* ============================================================
+   TYPE UTILITY CLASSES (semantic)
+   ============================================================ */
+
+.t-display {
+  font-family: var(--font-sans);
+  font-size: var(--h1-size);
+  line-height: var(--h1-lh);
+  letter-spacing: var(--h1-tracking);
+  font-weight: var(--h1-weight);
+  color: var(--fg1);
+}
+.t-h1 { font: 600 var(--h1-size)/var(--h1-lh) var(--font-sans); letter-spacing: var(--h1-tracking); color: var(--fg1); }
+.t-h2 { font: 600 var(--h2-size)/var(--h2-lh) var(--font-sans); letter-spacing: var(--h2-tracking); color: var(--fg1); }
+.t-h3 { font: 600 var(--h3-size)/var(--h3-lh) var(--font-sans); letter-spacing: var(--h3-tracking); color: var(--fg1); }
+.t-h4 { font: 600 var(--h4-size)/var(--h4-lh) var(--font-sans); letter-spacing: var(--h4-tracking); color: var(--fg1); }
+.t-p  { font: 400 var(--p-size)/var(--p-lh) var(--font-sans);  color: var(--fg1); }
+.t-lead { font: 400 var(--text-xl)/1.55 var(--font-sans); color: var(--fg2); }
+.t-small { font: 400 var(--small-size)/var(--small-lh) var(--font-sans); color: var(--fg2); }
+.t-xs { font: 400 var(--text-xs)/1.5 var(--font-sans); color: var(--fg2); }
+
+.t-eyebrow {
+  font: 700 var(--eyebrow-size)/1.4 var(--font-sans);
+  letter-spacing: var(--eyebrow-tracking);
+  text-transform: uppercase;
+  color: var(--fg2);
+}
+.t-code {
+  font: 500 var(--code-size)/1.55 var(--font-mono);
+  color: var(--fg1);
+}
+
+/* Expressive italic accent (used for "for you", brand voice) —
+   Inter's own italic, NOT a separate serif face. The codebase achieves
+   this accent via CSS `italic` on Inter. */
+.t-italic-accent {
+  font-family: var(--font-sans);
+  font-style: italic;
+  font-weight: 500;
+  color: var(--brand);
+  letter-spacing: -0.01em;
+}
+
+/* Shimmer sweep (used on landing hero) */
+.t-shimmer {
+  background: linear-gradient(to right, var(--fg1) 0%, var(--brand) 50%, var(--fg1) 100%);
+  background-size: 200% auto;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: oj-shimmer 4s linear infinite;
+}
+@keyframes oj-shimmer { to { background-position: 200% center; } }
+
+/* ============================================================
+   COMMON UTILITIES
+   ============================================================ */
+
+.oj-bg-mesh {
+  background-image: radial-gradient(circle at 2px 2px, currentColor 1px, transparent 0);
+  background-size: 40px 40px;
+  opacity: 0.03;
+}
+
+.oj-glass {
+  background: rgba(255, 255, 255, 0.70);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  box-shadow: var(--shadow-sm);
+}
+
+.oj-hover-lift {
+  transition: transform var(--dur) var(--ease), box-shadow var(--dur) var(--ease);
+}
+.oj-hover-lift:hover { transform: translateY(-2px); box-shadow: var(--shadow-md); }
+.oj-hover-lift:active { transform: translateY(0) scale(0.98); }
+
+/* Floating blob for hero backdrops */
+@keyframes oj-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+.oj-float        { animation: oj-float var(--dur-float) ease-in-out infinite; }
+.oj-float-delay  { animation: oj-float var(--dur-float) ease-in-out 3s infinite; }

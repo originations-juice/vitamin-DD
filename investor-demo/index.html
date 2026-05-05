@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>How O.J. works — rolling demo</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<link rel="stylesheet" href="assets/colors_and_type.css" />
+<style>
+  html, body { margin: 0; background: #0a0a0a; height: 100%; overflow: hidden; }
+  #root { position: absolute; inset: 0; }
+</style>
+</head>
+<body>
+<div id="root"></div>
+
+<script src="https://unpkg.com/react@18.3.1/umd/react.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/react-dom@18.3.1/umd/react-dom.development.js" crossorigin="anonymous"></script>
+<script src="https://unpkg.com/@babel/standalone@7.29.0/babel.min.js" crossorigin="anonymous"></script>
+
+<script type="text/babel" src="src/animations.jsx"></script>
+<script type="text/babel" src="src/shared.jsx"></script>
+<script type="text/babel" src="src/components.jsx"></script>
+<script type="text/babel" src="src/auth.jsx"></script>
+<script type="text/babel" src="src/scenes.jsx"></script>
+
+<script type="text/babel">
+  const { Stage, Sprite, GlobalStyles } = window;
+  const { Step1, Step2, Step3, DUR_STEP1, DUR_STEP2, DUR_STEP3, STAGE_W, STAGE_H } = window;
+
+  const T1_END = DUR_STEP1;
+  const T2_END = T1_END + DUR_STEP2;
+  const T3_END = T2_END + DUR_STEP3;
+
+  ReactDOM.createRoot(document.getElementById('root')).render(
+    <Stage width={STAGE_W} height={STAGE_H} duration={T3_END}
+           background="#FAF8F5" persistKey="oj-rolling">
+      <GlobalStyles />
+      <Sprite start={0}      end={T1_END}><Step1 /></Sprite>
+      <Sprite start={T1_END} end={T2_END}><Step2 /></Sprite>
+      <Sprite start={T2_END} end={T3_END}><Step3 /></Sprite>
+    </Stage>
+  );
+</script>
+</body>
+</html>
